@@ -8,9 +8,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Getting started 
 1. Download Node.js (once)
-2. Open your terminal 
-3. Install Angular CLI  `npm install -g @angular/cli `  (once)
-4. Run `ng serve --open` for a dev server. 
+2. Open Powershell and run `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned` (once)
+3. Open your terminal 
+4. Install Angular CLI  `npm install -g @angular/cli `  (once)
+5. If dev kit is not installed `npm install --save-dev @angular-devkit/build-angular`
+6. Run `ng serve --open` for a dev server. 
 
 
 ## Further help
