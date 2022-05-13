@@ -7,7 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 
 ## Getting started 
-1. Download Node.js if (once)
+1. Download Node.js (once)
 2. Open your terminal 
 3. Install Angular CLI  `npm install -g @angular/cli `  (once)
 4. Run `ng serve --open` for a dev server. 
