@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Injectable} from '@angular/core';
 import {getMaxNumberOfWorkers} from "@angular/compiler-cli/ngcc/src/ngcc_options";
 
 @Component({
@@ -6,8 +6,9 @@ import {getMaxNumberOfWorkers} from "@angular/compiler-cli/ngcc/src/ngcc_options
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
-  newMemberName: string = "";
+ newMemberName: string = "";
   numberOfTeams:string = "";
   members: string[] = [];
   teams: string[][] = [];
@@ -18,8 +19,6 @@ export class AppComponent {
     this.newMemberName = member;
 
   }
-
-
 
   onTeamsInput(value: string) {
     this.numberOfTeams = value;

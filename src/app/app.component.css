@@ -16,7 +16,6 @@ h1 {
   height: 10rem;
   border: 0.1rem solid grey;
   overflow: auto;
-  font-size: 1.75rem;
 
 }
 
@@ -28,10 +27,11 @@ h1 {
   border: 0.1rem solid grey;
   overflow: auto;
   font-weight: bold;
-  font-size: 1.50rem;
+  font-size: 1.25rem;
 
 
 }
+
 
 
 .container {
