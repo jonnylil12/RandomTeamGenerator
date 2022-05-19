@@ -1,6 +1,4 @@
-import {Component, Injectable} from '@angular/core';
-import {getMaxNumberOfWorkers} from "@angular/compiler-cli/ngcc/src/ngcc_options";
-
+import {Component} from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,11 +6,12 @@ import {getMaxNumberOfWorkers} from "@angular/compiler-cli/ngcc/src/ngcc_options
 })
 
 export class AppComponent {
- newMemberName: string = "";
+  newMemberName: string = "";
   numberOfTeams:string = "";
   members: string[] = [];
-  teams: string[][] = [];
+  teams: string[][];
   errorMessage = '';
+  title: string = "webapp";
 
 
   onMemberInput(member: string) {
@@ -26,51 +25,79 @@ export class AppComponent {
 
 
   addMember() {
-
-    if (!this.newMemberName)
-      this.errorMessage = "Name cant be empty";
-    else {
+   this.errorMessage = this.checkError('1');
+    if(!this.errorMessage) {
       this.members.push(this.newMemberName);
-      this.newMemberName = '';
-      this.errorMessage = '';
+
     }
 
 
   }
 
-  generateTeams() {
+  generateTeams(): void{
     this.teams=[];
-    if (!this.numberOfTeams || Number(this.numberOfTeams) < 0)
-      this.errorMessage = "Number of Teams has to be more than one";
-    else if(isNaN(Number(this.numberOfTeams)))
-      this.errorMessage = 'Please enter a valid number';
-    else if(Number(this.numberOfTeams) > this.members.length)
-      this.errorMessage = 'Not enough members for teams';
+    this.errorMessage = this.checkError('2')
+    if(!this.errorMessage) {
 
-    else {
-        for (let i = 0; i < Number(this.numberOfTeams); i++)
-          this.teams.push([]);
-
+        this.teams = this.createTeamArray();
         let members_copy = [...this.members];
-        while(members_copy.length >= 1) {
+        while(members_copy.length != 0) {
+
           for (let i = 0; i < Number(this.numberOfTeams); i++) {
+
             let pick = Math.floor(Math.random() * members_copy.length);
             this.teams[i].push(...members_copy.splice(pick, pick+1));
           }
 
         }
-        this.numberOfTeams = '';
-        this.errorMessage = '';
+        this.resetFields('2');
 
      }
 
   }
 
 
-  resetFields(){
-    this.members=[];
-    this.teams=[];
+  createTeamArray(): any[][]{
+    let T =[];
+    while(T.push([]) < Number(this.numberOfTeams)) {}
+    return T;
+
+  }
+
+
+  resetFields(caller = ''): void{
+    if(caller === '1')
+      this.newMemberName = '';
+
+    else if(caller === '2')
+      this.numberOfTeams = '';
+
+    else{
+      this.members=[];
+      this.teams=[];
+    }
     this.errorMessage ='';
+  }
+
+
+  checkError(caller): string{
+    if (caller === '1'){
+      if (!this.newMemberName)
+        return 'Name cant be empty';
+    }
+    else{
+        if (!this.numberOfTeams || Number(this.numberOfTeams) < 0)
+          return "Number of Teams has to be more than one";
+
+        else if(isNaN(Number(this.numberOfTeams)))
+          return 'Please enter a valid number';
+
+        else if(Number(this.numberOfTeams) > this.members.length)
+          return 'Not enough members for teams';
+      }
+    return ''
+
+
   }
 }
 
