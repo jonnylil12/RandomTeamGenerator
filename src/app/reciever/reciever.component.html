@@ -1,0 +1,10 @@
+<div class = "container">
+  <input
+    #newInput
+    type = "text"
+    placeholder="{{text[0]}}"
+    (input)="onInput(newInput.value)"
+    [value]="newValue"
+  />
+  <button (click)="onCLick()">{{text[1]}}</button>
+</div>
